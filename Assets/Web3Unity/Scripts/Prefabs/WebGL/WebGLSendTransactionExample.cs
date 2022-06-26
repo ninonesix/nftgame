@@ -13,7 +13,7 @@ public class WebGLSendTransactionExample : MonoBehaviour
         // account to send to
         string to = "0x814220bA2E552Db82615980966220C5c3f67d3b0";
         // amount in wei to send
-        string value = "5000000000000000000";
+        string value = "10000000000000000";
         // gas limit OPTIONAL
         string gasLimit = "";
         // gas price OPTIONAL
