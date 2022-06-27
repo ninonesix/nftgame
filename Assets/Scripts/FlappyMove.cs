@@ -34,20 +34,20 @@ public class FlappyMove : MonoBehaviour
         {
             ManageGame.GameOver();
         }
-        else
-
-        if (collision.collider.tag == "winner")
-        {
-
-            ManageGame.Win();
-        }
-        else
-
-        if (collision.collider.tag == "easy")
-        {
-
-            ManageGame.WinFree();
-        }
+        
+        // else
+        // if (collision.collider.tag == "winner")
+        // {
+        //
+        //     ManageGame.Win();
+        // }
+        // else
+        //
+        // if (collision.collider.tag == "easy")
+        // {
+        //
+        //     ManageGame.WinFree();
+        // }
     }
 
 }
