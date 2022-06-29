@@ -11,12 +11,6 @@ public class WalletAccount : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myAccount.text = PlayerPrefs.GetString("Account");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //myAccount.text = PlayerPrefs.GetString("Account");
     }
 }

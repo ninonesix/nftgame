@@ -9,12 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Login.unity
     guid: 2afe1f2f1b23b0140be56913fad8e01b
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Menu.unity
+    guid: 54feb5202b6d01e4eb381d55cc32435b
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 75619e3ca6d25b447a30178eb0ca9d15
   - enabled: 1
     path: Assets/Scenes/Win.unity
-    guid: 8a52e6f9d89860d4eab34e84fe2972b9
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: ccb625944453a8748b8f0dcb2d54d2c9
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

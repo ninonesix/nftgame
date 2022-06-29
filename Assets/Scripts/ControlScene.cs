@@ -9,4 +9,9 @@ public class ControlScene : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+
+    public void Return()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

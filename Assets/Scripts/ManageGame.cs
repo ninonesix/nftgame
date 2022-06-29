@@ -15,16 +15,21 @@ public class ManageGame : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void Win()
+    {
+        SceneManager.LoadScene(3);
+    }
+
     public void GameOver()
     {
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0;
     }
 
-    public void Win()
-    {
-        SceneManager.LoadScene(14);
-    }
+    // public void Win()
+    // {
+    //     SceneManager.LoadScene(14);
+    // }
 
     public void WinFree()
     {
