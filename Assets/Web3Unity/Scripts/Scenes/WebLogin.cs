@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-#if UNITY_WEBGL
+//#if UNITY_WEBGL
 public class WebLogin : MonoBehaviour
 {
     [DllImport("__Internal")]
@@ -47,4 +47,4 @@ public class WebLogin : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
-#endif
+//#endif
