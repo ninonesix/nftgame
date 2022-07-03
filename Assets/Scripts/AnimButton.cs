@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class AnimButton : MonoBehaviour
 {
@@ -33,8 +32,8 @@ public class AnimButton : MonoBehaviour
         if(scaledOverTime)
         {
             var seq = DOTween.Sequence();
-            seq.Append(transform.DOScale(1.5f, 0.5f));
-            seq.Append(transform.DOScale(1f, 0.5f));
+            seq.Append(transform.DOScale(1.2f, 0.3f));
+            seq.Append(transform.DOScale(1f, 0.3f));
             seq.SetLoops(-1);
         }
     }
