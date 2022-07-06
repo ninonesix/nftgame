@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//#if UNITY_WEBGL
 public class WebLogin : MonoBehaviour
 {
     [DllImport("__Internal")]
@@ -20,8 +19,12 @@ public class WebLogin : MonoBehaviour
 
     public void OnLogin()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
         Web3Connect();
         OnConnected();
+#else 
+        SceneController.instance.ShowMenu();
+#endif
     }
 
     async private void OnConnected()
@@ -40,12 +43,11 @@ public class WebLogin : MonoBehaviour
         SceneController.instance.ShowMenu();
     }
 
-    public void OnSkip()
-    {
-        // burner account for skipped sign in screen
-        PlayerPrefs.SetString("Account", "");
-        // move to next scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+    //public void OnSkip()
+    //{
+    //    // burner account for skipped sign in screen
+    //    PlayerPrefs.SetString("Account", "");
+    //    // move to next scene
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    //}
 }
-//#endif

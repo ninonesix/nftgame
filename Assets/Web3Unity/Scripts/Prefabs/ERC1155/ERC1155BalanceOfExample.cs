@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ERC1155BalanceOfExample : MonoBehaviour
 {
-    public GameObject flappy;
+    //public GameObject flappy;
     async public void CheckNFT()
     {
         string chain = "ethereum";
@@ -19,7 +19,7 @@ public class ERC1155BalanceOfExample : MonoBehaviour
 
         if (balanceOf > 0)
         {
-            flappy.SetActive(true);
+            //flappy.SetActive(true);
         }
     }
 }

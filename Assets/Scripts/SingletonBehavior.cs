@@ -6,7 +6,7 @@ public class SingletonBehavior<T> : MonoBehaviour where T : SingletonBehavior<T>
 {
     public static T instance { get; protected set; }
 
-    void Awake()
+    private void Awake()
     {
         if (instance != null && instance != this)
         {

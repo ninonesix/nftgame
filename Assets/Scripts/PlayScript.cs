@@ -7,8 +7,8 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-#if UNITY_WEBGL
-public class WebGLTransfer20: MonoBehaviour
+
+public class PlayScript: MonoBehaviour
 {
     [SerializeField]
     private string contract = "0x64DbAC9b808E255E0721dDA35849Bb1A51b28B15";
@@ -21,15 +21,16 @@ public class WebGLTransfer20: MonoBehaviour
 
     public TextMeshProUGUI hash;
 
-    async public void Transfer()
+    async public void Play()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
         // smart contract method to call
         string method = "transfer";
         // array of arguments for contract
         string[] obj = {toAccount, amount};
         string args = JsonConvert.SerializeObject(obj);
         // value in wei
-        string value = "0";
+        string value = "10";
         // gas limit OPTIONAL
         string gasLimit = "";
         // gas price OPTIONAL
@@ -43,14 +44,18 @@ public class WebGLTransfer20: MonoBehaviour
         } catch (Exception e) {
             Debug.LogException(e, this);
         }
+#else
+        SceneController.instance.ShowGame();
+#endif
     }
-    
+
+#if UNITY_WEBGL && !UNITY_EDITOR
     public void Update()
     {
         if (hash.text.Contains("0"))
         {
-            SceneManager.LoadScene(2);
+            SceneController.instance.ShowGame();
         }
     }
-}
 #endif
+}
