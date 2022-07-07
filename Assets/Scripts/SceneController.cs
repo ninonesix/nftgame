@@ -9,7 +9,7 @@ public class SceneController : SingletonBehavior<SceneController>
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject endScene;
     [SerializeField] private GameObject gameScene;
-    //[SerializeField] private GameObject gameScene;
+    [SerializeField] private GameObject gameOver;
 
     private void OnEnable()
     {
@@ -22,7 +22,8 @@ public class SceneController : SingletonBehavior<SceneController>
         menuScene.SetActive(false);
         winScene.SetActive(false);
         endScene.SetActive(false);
-        //gameScene.SetActive(false);
+        gameOver.SetActive(false);
+        gameScene.SetActive(false);
     }
 
     public void ShowLogin()
@@ -51,5 +52,11 @@ public class SceneController : SingletonBehavior<SceneController>
     public void ShowEnd()
     {
 
+    }
+
+    public void ShowOver()
+    {
+        HideAllScene();
+        gameOver.SetActive(true);
     }
 }
