@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMove : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
-    public float velocity = 1;
+    [SerializeField] private float velocity = 1;
     private Rigidbody2D rb;
-    public ManageGame ManageGame;
     private bool stop;
 
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
@@ -37,11 +33,13 @@ public class PlayerMove : MonoBehaviour
     public void StopPlayer()
     {
         stop = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void StartPlayer()
     {
         stop = false;
+        rb.constraints = RigidbodyConstraints2D.None;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

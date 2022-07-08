@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonBehavior<GameManager>
 {
     [SerializeField] private GameObject character;
     [SerializeField] private GameObject pipeHolder;
@@ -12,14 +12,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject land;
     [SerializeField] private Dictionary<GameObject, Vector2> objOrgPosition;
 
-    private void Awake()
+    public static float ScreenSize;
+
+    protected override void Awake()
     {
+        base.Awake();
         objOrgPosition = new Dictionary<GameObject, Vector2>();
         objOrgPosition.Add(character,character.transform.position);
         foreach(var pipe in pipes)
         {
             objOrgPosition.Add(pipe,pipe.transform.position);
         }
+
+        ScreenSize = Camera.main.orthographicSize * 2f * Screen.width / Screen.height;
     }
 
     private void ResetAllPosition()
@@ -31,7 +36,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private Vector2 GetGameObjectOrgPosition(GameObject gobj)
+    public Vector2 GetGameObjectOrgPosition(GameObject gobj)
     {
         return objOrgPosition.ContainsKey(gobj) ? objOrgPosition[gobj] : Vector2.zero;
     }
@@ -43,19 +48,19 @@ public class GameManager : MonoBehaviour
         pipeHolder.SetActive(true);
         gameBG.SetActive(true);
         land.SetActive(true);
-        character.GetComponent<PlayerMove>().StartPlayer();
+        character.GetComponent<Player>().StartPlayer();
         foreach(var pipe in pipes)
         {
-            pipe.GetComponent<Move>().StartMove();
+            pipe.GetComponent<PipeController>().StartMove();
         }
     }
 
     private void OnDisable()
     {
-        character.GetComponent<PlayerMove>().StopPlayer();
+        character.GetComponent<Player>().StopPlayer();
         foreach(var pipe in pipes)
         {
-            pipe.GetComponent<Move>().StopMove();
+            pipe.GetComponent<PipeController>().StopMove();
         }
     }
 }

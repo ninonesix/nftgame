@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class PipeController : MonoBehaviour
 {
-    public float speed;
+    [SerializeField] private float speed;
     private bool stop;
 
     void Update()
@@ -14,7 +14,11 @@ public class Move : MonoBehaviour
             return;
         }
         transform.position += Vector3.left * speed * Time.deltaTime;
-        
+    }
+
+    public void OnMoveOutOfCamera()
+    {
+        transform.position = GameManager.instance.GetGameObjectOrgPosition(gameObject) + Vector2.right * GameManager.ScreenSize;
     }
 
     public void StopMove()
