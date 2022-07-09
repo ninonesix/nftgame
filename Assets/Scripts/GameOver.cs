@@ -38,5 +38,6 @@ public class GameOver : MonoBehaviour
     {
         getReward.SetActive(false);
         replay.SetActive(true);
+        GameManager.instance.ResetScore();
     }
 }
