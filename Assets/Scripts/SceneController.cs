@@ -35,7 +35,7 @@ public class SceneController : SingletonBehavior<SceneController>
     public void ShowGame()
     {
         HideAllScene();
-        GameManager.instance.Score = 0;
+        GameManager.instance?.ResetScore();  
         gameScene.SetActive(true);
     }
 

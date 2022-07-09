@@ -21,7 +21,6 @@ public class GameManager : SingletonBehavior<GameManager>
 
     public int Score
     {
-        set { score = value; }
         get { return score; }  
     }
 
@@ -52,6 +51,11 @@ public class GameManager : SingletonBehavior<GameManager>
     public Vector2 GetGameObjectOrgPosition(GameObject gobj)
     {
         return objOrgPosition.ContainsKey(gobj) ? objOrgPosition[gobj] : Vector2.zero;
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
     }
 
     private void OnEnable()
