@@ -19,6 +19,12 @@ public class GameManager : SingletonBehavior<GameManager>
     public static Vector2 RightBoundLimit;
     private int score;
 
+    public int Score
+    {
+        set { score = value; }
+        get { return score; }  
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -51,7 +57,6 @@ public class GameManager : SingletonBehavior<GameManager>
     private void OnEnable()
     {
         ResetAllPosition();
-        score = 0;
         UpdateScoreText();
         gameCanvas.SetActive(true);
         character.SetActive(true);

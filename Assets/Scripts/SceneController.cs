@@ -35,6 +35,7 @@ public class SceneController : SingletonBehavior<SceneController>
     public void ShowGame()
     {
         HideAllScene();
+        GameManager.instance.Score = 0;
         gameScene.SetActive(true);
     }
 
@@ -42,16 +43,6 @@ public class SceneController : SingletonBehavior<SceneController>
     {
         HideAllScene();
         menuScene.SetActive(true);
-    }
-
-    public void ShowWin()
-    {
-
-    }
-
-    public void ShowEnd()
-    {
-
     }
 
     public void ShowOver()
