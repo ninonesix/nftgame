@@ -5,7 +5,9 @@ using UnityEngine;
 public class PipeController : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private GameObject[] pipes;
     private bool stop;
+
 
     void Update()
     {
@@ -18,7 +20,18 @@ public class PipeController : MonoBehaviour
 
     public void OnMoveOutOfCamera()
     {
-        transform.position = GameManager.instance.GetGameObjectOrgPosition(gameObject) + Vector2.right * GameManager.ScreenSize;
+        if(transform.localPosition.x > 0)
+        {
+            return;
+        }
+        transform.localPosition = GameManager.RightBoundLimit + Vector2.right * 1.85f + Vector2.up * transform.localPosition.y;
+        RandomChangePipeDistance();
+    }
+
+    private void RandomChangePipeDistance()
+    {
+        pipes[0].transform.localPosition = new Vector2(pipes[0].transform.localPosition.x, Random.Range(-2.85f, 0.16f));
+        pipes[1].transform.localPosition = new Vector2(pipes[1].transform.localPosition.x, Random.Range(8.55f, 11.82f));
     }
 
     public void StopMove()

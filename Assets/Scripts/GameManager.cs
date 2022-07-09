@@ -12,7 +12,8 @@ public class GameManager : SingletonBehavior<GameManager>
     [SerializeField] private GameObject land;
     [SerializeField] private Dictionary<GameObject, Vector2> objOrgPosition;
 
-    public static float ScreenSize;
+    public static float ScreenWidthSize;
+    public static Vector2 RightBoundLimit;
 
     protected override void Awake()
     {
@@ -24,7 +25,9 @@ public class GameManager : SingletonBehavior<GameManager>
             objOrgPosition.Add(pipe,pipe.transform.position);
         }
 
-        ScreenSize = Camera.main.orthographicSize * 2f * Screen.width / Screen.height;
+        ScreenWidthSize = Camera.main.orthographicSize * 2f * Screen.width / Screen.height;
+
+        RightBoundLimit = new Vector2(ScreenWidthSize / 2, 0);
     }
 
     private void ResetAllPosition()

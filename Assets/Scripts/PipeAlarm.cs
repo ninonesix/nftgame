@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PiipeAlarm : MonoBehaviour
+public class PipeAlarm : MonoBehaviour
 {
     [SerializeField] PipeController controller;
 
