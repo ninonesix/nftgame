@@ -48,9 +48,14 @@ public class Player : MonoBehaviour
         {
             SceneController.instance.ShowOver();
         }
-        else if (collision.collider.tag == Constants.GOAL_TAG)
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(Constants.SCORE_ZONE_TAG))
         {
-            SceneController.instance.ShowWin();
+            GameManager.instance.IncreaseScore();
         }
     }
 

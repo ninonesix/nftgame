@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class GameManager : SingletonBehavior<GameManager>
 {
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject gameCanvas;
     [SerializeField] private GameObject character;
     [SerializeField] private GameObject pipeHolder;
     [SerializeField] private GameObject[] pipes;
@@ -14,6 +17,7 @@ public class GameManager : SingletonBehavior<GameManager>
 
     public static float ScreenWidthSize;
     public static Vector2 RightBoundLimit;
+    private int score;
 
     protected override void Awake()
     {
@@ -47,6 +51,9 @@ public class GameManager : SingletonBehavior<GameManager>
     private void OnEnable()
     {
         ResetAllPosition();
+        score = 0;
+        UpdateScoreText();
+        gameCanvas.SetActive(true);
         character.SetActive(true);
         pipeHolder.SetActive(true);
         gameBG.SetActive(true);
@@ -64,6 +71,20 @@ public class GameManager : SingletonBehavior<GameManager>
         foreach(var pipe in pipes)
         {
             pipe.GetComponent<PipeController>().StopMove();
+        }
+    }
+
+    private void UpdateScoreText()
+    {
+        scoreText.text = score.ToString();
+    }
+
+    public void IncreaseScore(bool notify = true)
+    {
+        score += 1;
+        if(notify)
+        {
+            UpdateScoreText();
         }
     }
 }

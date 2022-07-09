@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 #if UNITY_WEBGL
-public class WebGLSendContractExample : MonoBehaviour
+public class SendReward: MonoBehaviour
 {
     public TextMeshProUGUI confirmation;
     

@@ -3,7 +3,7 @@ using System.Numerics;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ERC1155BalanceOfExample : MonoBehaviour
+public class CheckNFT1155: MonoBehaviour
 {
     //public GameObject flappy;
     async public void CheckNFT()

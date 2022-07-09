@@ -5,5 +5,5 @@ using UnityEngine;
 public static class Constants
 {
     public static string PIPE_TAG = "pipe";
-    public static string GOAL_TAG = "medal";
+    public static string SCORE_ZONE_TAG = "score";
 }
