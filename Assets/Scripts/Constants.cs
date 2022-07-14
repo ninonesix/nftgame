@@ -6,4 +6,5 @@ public static class Constants
 {
     public static string PIPE_TAG = "pipe";
     public static string SCORE_ZONE_TAG = "score";
+    public static string ENEMY = "enemy";
 }

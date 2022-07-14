@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-
+    [SerializeField] private GameObject fireBall;
     [SerializeField] private float velocity = 1;
     private Rigidbody2D rb;
     private bool stop;
+    private const float duration = 1.0f;
+    private float time;
 
     void Awake()
     {
@@ -18,28 +20,36 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time += Time.deltaTime;
         if(stop)
         {
             return;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
         {
             //Jump
             rb.velocity = Vector2.up * velocity;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Return) && time > duration)
+        {
+            Instantiate(fireBall,transform.position,Quaternion.identity);
+            time = 0;
         }
     }
 
     public void StopPlayer()
     {
         stop = true;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        time = 0f;
+        //rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void StartPlayer()
     {
         stop = false;
-        rb.constraints = RigidbodyConstraints2D.None;
+        //rb.constraints = RigidbodyConstraints2D.None;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,6 +60,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(Constants.ENEMY))
+        {
+            SceneController.instance.ShowOver();
+        }
+    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {

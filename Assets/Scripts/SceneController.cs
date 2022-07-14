@@ -1,29 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SceneController : SingletonBehavior<SceneController>
 {
     [SerializeField] private GameObject loginScene;
     [SerializeField] private GameObject menuScene;
-    [SerializeField] private GameObject winScene;
-    [SerializeField] private GameObject endScene;
     [SerializeField] private GameObject gameScene;
     [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject leaderBoard;
+
+    public static Action OnEnterGame;
 
     private void OnEnable()
     {
         ShowLogin();
     }
 
+    public void ShowLeaderboard()
+    {
+        HideAllScene();
+        leaderBoard.SetActive(true);
+    }
+
     public void HideAllScene()
     {
         loginScene.SetActive(false);
         menuScene.SetActive(false);
-        winScene.SetActive(false);
-        endScene.SetActive(false);
         gameOver.SetActive(false);
         gameScene.SetActive(false);
+        leaderBoard.SetActive(false);
     }
 
     public void ShowLogin()
@@ -35,7 +42,8 @@ public class SceneController : SingletonBehavior<SceneController>
     public void ShowGame()
     {
         HideAllScene();
-        GameManager.instance?.ResetScore();  
+        GameManager.instance?.ResetScore();
+        OnEnterGame?.Invoke();
         gameScene.SetActive(true);
     }
 

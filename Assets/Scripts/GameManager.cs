@@ -14,10 +14,14 @@ public class GameManager : SingletonBehavior<GameManager>
     [SerializeField] private GameObject gameBG;
     [SerializeField] private GameObject land;
     [SerializeField] private Dictionary<GameObject, Vector2> objOrgPosition;
+    [SerializeField] private GameObject bee;
 
+    private IEnumerator spawnBee;
     public static float ScreenWidthSize;
     public static Vector2 RightBoundLimit;
     private int score;
+    public static Action OnGameOver;
+    public static float Time;
 
     public int Score
     {
@@ -72,10 +76,15 @@ public class GameManager : SingletonBehavior<GameManager>
         {
             pipe.GetComponent<PipeController>().StartMove();
         }
+        spawnBee = CoroutineSpawnBee();
+        StartCoroutine(spawnBee);
     }
 
     private void OnDisable()
     {
+        Time = 0f;
+        OnGameOver?.Invoke();
+        StopCoroutine(spawnBee);
         character.GetComponent<Player>().StopPlayer();
         foreach(var pipe in pipes)
         {
@@ -95,5 +104,20 @@ public class GameManager : SingletonBehavior<GameManager>
         {
             UpdateScoreText();
         }
+    }
+
+    private IEnumerator CoroutineSpawnBee()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.1f, 2f));
+            Instantiate(bee, new Vector3(ScreenWidthSize + 0.5f, UnityEngine.Random.Range(-3f, 4f), 0), Quaternion.identity);
+        }
+    }
+
+    private void Update()
+    {
+        Time += UnityEngine.Time.deltaTime;
+        Debug.Log("time is" + Time);
     }
 }

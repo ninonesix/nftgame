@@ -30,8 +30,8 @@ public class PipeController : MonoBehaviour
 
     private void RandomChangePipeDistance()
     {
-        pipes[0].transform.localPosition = new Vector2(pipes[0].transform.localPosition.x, Random.Range(-2.85f, 0.16f));
-        pipes[1].transform.localPosition = new Vector2(pipes[1].transform.localPosition.x, Random.Range(8.55f, 11.82f));
+        pipes[0].transform.localPosition = new Vector2(pipes[0].transform.localPosition.x, Random.Range(-6.2f, -4.72f));
+        pipes[1].transform.localPosition = new Vector2(pipes[1].transform.localPosition.x, Random.Range(4.53f, 6.65f));
     }
 
     public void StopMove()
