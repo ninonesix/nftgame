@@ -9,6 +9,8 @@ public class GameManager : SingletonBehavior<GameManager>
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject gameCanvas;
     [SerializeField] private GameObject character;
+    [SerializeField] private GameObject characterLvl1;
+    [SerializeField] private GameObject characterLvl2;
     [SerializeField] private GameObject pipeHolder;
     [SerializeField] private GameObject[] pipes;
     [SerializeField] private GameObject gameBG;
@@ -68,6 +70,8 @@ public class GameManager : SingletonBehavior<GameManager>
         UpdateScoreText();
         gameCanvas.SetActive(true);
         character.SetActive(true);
+        characterLvl1.SetActive(false);
+        characterLvl2.SetActive(false);
         pipeHolder.SetActive(true);
         gameBG.SetActive(true);
         land.SetActive(true);
@@ -86,6 +90,8 @@ public class GameManager : SingletonBehavior<GameManager>
         OnGameOver?.Invoke();
         StopCoroutine(spawnBee);
         character.GetComponent<Player>().StopPlayer();
+        characterLvl1.GetComponent<Player>().StopPlayer();
+        characterLvl2.GetComponent<Player>().StopPlayer();
         foreach(var pipe in pipes)
         {
             pipe.GetComponent<PipeController>().StopMove();
@@ -100,6 +106,29 @@ public class GameManager : SingletonBehavior<GameManager>
     public void IncreaseScore(bool notify = true)
     {
         score += 1;
+
+        if (score > 10)
+        {
+            if(!characterLvl2.activeInHierarchy)
+            {
+                characterLvl1.GetComponent<Player>().StopPlayer();
+                characterLvl2.GetComponent<Player>().StartPlayer();
+                characterLvl2.transform.position = characterLvl1.transform.position;
+                characterLvl1.SetActive(false);
+                characterLvl2.SetActive(true);
+            }
+        } 
+        else if (score > 5)
+        {
+            if(!characterLvl1.activeInHierarchy)
+            {
+                character.GetComponent<Player>().StopPlayer();
+                characterLvl1.GetComponent<Player>().StartPlayer();
+                characterLvl1.transform.position = character.transform.position;
+                character.SetActive(false);
+                characterLvl1.SetActive(true);
+            }
+        }
         if(notify)
         {
             UpdateScoreText();

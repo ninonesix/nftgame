@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private float speed;
     [SerializeField] private int damage;
+    [SerializeField] private float endDuration = 4f;
+    private float duration;
 
     private void Awake()
     {
@@ -25,7 +27,12 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
+        duration += Time.deltaTime;
         transform.position += Vector3.right * speed * Time.deltaTime;
+        if(duration > endDuration)
+        {
+            OnGameOver();
+        }
     }
 
     private void OnBecameInvisible()

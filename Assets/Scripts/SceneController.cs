@@ -9,7 +9,6 @@ public class SceneController : SingletonBehavior<SceneController>
     [SerializeField] private GameObject menuScene;
     [SerializeField] private GameObject gameScene;
     [SerializeField] private GameObject gameOver;
-    [SerializeField] private GameObject leaderBoard;
 
     public static Action OnEnterGame;
 
@@ -18,19 +17,12 @@ public class SceneController : SingletonBehavior<SceneController>
         ShowLogin();
     }
 
-    public void ShowLeaderboard()
-    {
-        HideAllScene();
-        leaderBoard.SetActive(true);
-    }
-
     public void HideAllScene()
     {
         loginScene.SetActive(false);
         menuScene.SetActive(false);
         gameOver.SetActive(false);
         gameScene.SetActive(false);
-        leaderBoard.SetActive(false);
     }
 
     public void ShowLogin()
@@ -42,8 +34,8 @@ public class SceneController : SingletonBehavior<SceneController>
     public void ShowGame()
     {
         HideAllScene();
-        GameManager.instance?.ResetScore();
         OnEnterGame?.Invoke();
+        GameManager.instance?.ResetScore();
         gameScene.SetActive(true);
     }
 
